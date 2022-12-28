@@ -22,6 +22,17 @@ The application receives patient contact information (e.g. phone number, email a
 
 ### Prerequisites
 
+#### Power Platform
+
+- Get access to a [Power Platform](https://docs.microsoft.com/en-us/power-platform/) environment with Dataverse provisioned and Power Apps premium licenses for users
+- Deploy a custom connector to the Power Platform environment if using the Bookings or Advanced Virtual Appointments [Sample connector](https://github.com/microsoft/Virtual-Visit-Sample-Connector)
+
+#### Microsoft Teams
+
+- Microsoft Bookings will need to be configured if Bookings are used for Virtual Appointment scheduling
+- Microsoft [Teams Premium](https://learn.microsoft.com/en-us/microsoftteams/enhanced-teams-experience#advanced-virtual-appointments) will be required if using the Advanced Virtual Appointments functionality
+- Microsoft Teams with [voice solution](https://learn.microsoft.com/en-us/microsoftteams/cloud-voice-landing-page) will need to be configured if using Teams for direct outbound calling
+
 ### Using the sample app
 
 ### Architecture
