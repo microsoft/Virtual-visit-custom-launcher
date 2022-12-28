@@ -1,0 +1,154 @@
+screen_Main As screen:
+    Fill: =RGBA(232, 232, 232, 1)
+    OnVisible: =Set(myParamPhone,Concat(MatchAll(Param("personPhone"),"\d"),FullMatch))
+
+    con_Screen As groupContainer.verticalAutoLayoutContainer:
+        Height: =1136
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =10
+        Width: =640
+        ZIndex: =1
+
+        con_Header As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =150
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            ZIndex: =1
+
+            img_logo As image:
+                BorderColor: =RGBA(0, 89, 178, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                Image: |-
+                    ="https://github.com/SmartterHealth/branding/blob/master/Primary%20Logo/primary%20-%20full.png?raw=true"
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                ZIndex: =1
+
+        con_Body As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =20
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            ZIndex: =2
+
+            Label2 As label:
+                BorderColor: =RGBA(0, 89, 178, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =150
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =21
+                Text: ="With this app you can connect with the patient. Call the phone number from Teams audio call with a single-click, or invite to a virtual visit to easily include additional parties."
+                Width: =Parent.Width
+                ZIndex: =1
+
+            con_Phone As groupContainer.horizontalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =100
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =2
+
+                Label1 As label:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Height: =70
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =560
+                    Size: =21
+                    Text: |-
+                        ="Phone:"
+                    ZIndex: =1
+
+                input_phone As text:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    BorderThickness: =2
+                    Color: =RGBA(0, 0, 0, 1)
+                    Default: =myParamPhone
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Format: =TextFormat.Number
+                    Height: =70
+                    HoverBorderColor: =RGBA(0, 89, 178, 1)
+                    HoverColor: =RGBA(0, 0, 0, 1)
+                    HoverFill: =RGBA(153, 205, 255, 1)
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =300
+                    MaxLength: =10
+                    Size: =21
+                    Width: =560
+                    ZIndex: =2
+
+            con_CallOrText As groupContainer.verticalAutoLayoutContainer:
+                FillPortions: =0
+                Height: =225
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =30
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                ZIndex: =3
+
+                Button1 As button:
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 51, 102, 1)
+                    FontWeight: =FontWeight.Semibold
+                    Height: =70
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 51, 102, 1), -20%)
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =280
+                    OnSelect: |-
+                        =Launch("https://teams.microsoft.com/l/call/0/0?users=4:"&input_phone.Text)
+                    Size: =24
+                    Text: ="Call Directly"
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                Button1_1 As button:
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(0, 51, 102, 1)
+                    FontWeight: =FontWeight.Semibold
+                    Height: =70
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 51, 102, 1), -20%)
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =280
+                    OnSelect: =Navigate(screen_VirtualVisit,Cover)
+                    Size: =24
+                    Text: ="Invite to virtual visit"
+                    Width: =Parent.Width
+                    ZIndex: =2
+

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>hsa_connectvirtually_228be</Name>
+  <AppVersion>2022-12-28T14:24:07Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.22121.19.0</CreatedByClientVersion>
+  <MinClientVersion>3.22121.19.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"640","primaryDeviceHeight":"1136","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Phone","publisherVersion":"3.22121.19","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>rgba(0, 51, 102, 1)</BackgroundColor>
+  <DisplayName>Connect Virtually</DisplayName>
+  <Description xsi:nil="true"></Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"78f0c710-eb93-4059-a0a3-4629242ae6ec":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1534/1.0.1534.2605/logicflows/icon.png","dataSources":["CreateVirtualVisitAndSendInvite"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"b6433d66-44bb-42fb-8cf2-e967c93a5a89"},"workflowEntityId":{"value":"eaf6ae87-1a86-ed11-81ac-000d3a1f127c"}},"parameterHintsV2":{"workflowName":{"value":"b6433d66-44bb-42fb-8cf2-e967c93a5a89"},"workflowEntityId":{"value":"eaf6ae87-1a86-ed11-81ac-000d3a1f127c"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]}}</ConnectionReferences>
+  <DatabaseReferences>{}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/hsa_connectvirtually_228be_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/hsa_connectvirtually_228be_DocumentUri.msapp</DocumentUri>
+</CanvasApp>
