@@ -190,7 +190,7 @@ screen_VirtualVisit As screen:
                     HoverColor: =RGBA(0, 0, 0, 1)
                     HoverFill: =RGBA(153, 205, 255, 1)
                     LayoutMinHeight: =70
-                    LayoutMinWidth: =560
+                    LayoutMinWidth: =300
                     Size: =21
                     Width: =Parent.Width
                     ZIndex: =2

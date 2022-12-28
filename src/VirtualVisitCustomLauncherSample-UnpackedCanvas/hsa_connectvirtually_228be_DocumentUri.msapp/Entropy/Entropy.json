@@ -35,10 +35,10 @@
     "img_logo_2": 26,
     "input_email_1": 36,
     "input_phone": 11,
-    "input_phone_1": 31,
-    "input_phone_1_clean": 32,
+    "input_phone_1": 32,
+    "input_phone_1_clean": 30,
     "Label1": 10,
-    "Label1_2": 30,
+    "Label1_2": 31,
     "Label1_3": 35,
     "Label2": 8,
     "Label2_1": 28,
@@ -51,7 +51,7 @@
   },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "12/28/2022 14:24:07",
+  "HeaderLastSavedDateTimeUTC": "12/28/2022 20:21:43",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {
     "78f0c710-eb93-4059-a0a3-4629242ae6ec": "\"/providers/microsoft.powerapps/apis/shared_logicflows/connections/b530101d1300630bf8c618203dedb8b0-bc2c6461e1ac541e\""
@@ -184,7 +184,7 @@
   "RuleScreenIdWithoutScreen": {},
   "TemplateVersions": {},
   "VolatileProperties": {
-    "AnalysisLoadTime": 0.45242769999999999,
+    "AnalysisLoadTime": 0.40720299999999998,
     "ControlCount": {
       "button": 4,
       "circle": 1,
@@ -198,7 +198,7 @@
       "screen": 3,
       "text": 3
     },
-    "DeserializationLoadTime": 3.6131864999999999,
+    "DeserializationLoadTime": 1.0825720000000001,
     "ErrorCount": 0
   },
   "WasLocalDatabaseReferencesEmpty": true
