@@ -1,14 +1,30 @@
-# Project
+# Project Overview
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+An application to provide a streamlined interface for various ways of initiating a virtual visit with a person or group of people.
 
-As the maintainer of this project, please make a few updates:
+## Use Cases
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+We built this project to meet multiple needs around connecting with patients through audio/video calls.
+
+### Streamlined "meet now" for virtual visits
+
+When trying to meet virtually with someone, there are multiple channels of engagement, with potentially multiple screens/interfaces involved in setting up and calling/inviting the participant and additional parties (e.g. interpreter, additional family member). There is a desire to have a "simple, single interface" to make engaging in a call easy, without detailed knowledge of how the communication platform works and the nuances of scheduling these different types of engagement.
+
+The application makes it easy to dial out via Teams call, or invite multiple parties via SMS/email to the virtual visit and join that call.
+
+### Launch from EMR applications
+
+For a healthcare proviers, clinicians, and staff, they want to be able to initiate calls from the context of a patient record or specific encounter in the EMR (desktop, mobile, tablet).
+
+The application receives patient contact information (e.g. phone number, email address) directly from the EMR, reducing effort and potential errors involved with copy/paste and entry.
+
+## Power Platform Application sample app
+
+### Prerequisites
+
+### Using the sample app
+
+### Architecture
 
 ## Contributing
 
