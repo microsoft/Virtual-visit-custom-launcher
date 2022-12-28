@@ -20,6 +20,8 @@ The application receives patient contact information (e.g. phone number, email a
 
 ## Power Platform Application sample app
 
+![Screenshot](./images/power-app-image.png)
+
 ### Prerequisites
 
 The following services are leveraged in the sample solution and may be part of your implementation. For specific questions regarding existing licensing, coverage, or to add services, contact your Microsoft account team.
@@ -35,9 +37,24 @@ The following services are leveraged in the sample solution and may be part of y
 - Microsoft [Teams Premium](https://learn.microsoft.com/en-us/microsoftteams/enhanced-teams-experience#advanced-virtual-appointments) will be required when using the Advanced Virtual Appointments functionality
 - Microsoft Teams with [voice solution](https://learn.microsoft.com/en-us/microsoftteams/cloud-voice-landing-page) will need to be configured when using Teams for direct outbound calling
 
-### Using the sample app
+### Exploring the sample app
 
-### Architecture
+Deploy the latest ***Virtual Visit Custom Launcher*** solution file ([/soluiton-file-history](./solution-file-history)) to your Dataverse environment, then Publish and run the *Connect Virtually* app.
+
+Explore the configuration of the solution components via the maker portal. Review the Power Apps canvas and Power Automate workflow used in the sample app.
+
+Try launching the *Connect Virtually* app from its URL and include one or both of the following parameters to simulate launch-from EMR:
+
+- To pass a phone number, use the `personPhone` parameter. e.g. `&personPhone=8885551234` 
+- To pass an email address, use the `personEmail` parameter. e.g. `&personEmail=jane@sample.com`
+
+> #### Managed or Unmanaged solutions?
+> 
+> Both Managed and Unmanaged solutions are available in this repository, as well as the raw source code.
+>  - The managed solution offers a one-step uninstallation of all components, but requires more steps to review/edit it in the Power Apps Maker Studio
+>  - The unmanaged solution can be reviewed/edited immediately once imported, but will require components to be individually deleted if you wish to remove them from the environment later
+>  - The source code folder [/src](/src) is intended for advanced makers (e.g. pro-developers) who prefer to build their own solution or inspect the raw detail that makes up the solution.
+ 
 
 ## Contributing
 
