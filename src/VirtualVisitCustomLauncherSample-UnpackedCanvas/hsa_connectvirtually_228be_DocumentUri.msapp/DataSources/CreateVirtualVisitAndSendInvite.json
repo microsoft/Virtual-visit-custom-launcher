@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "5236023b-7178-48db-9783-dc4f056d693b",
+    "Name": "CreateVirtualVisitAndSendInvite",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "eaf6ae87-1a86-ed11-81ac-000d3a1f127c"
+  }
+]

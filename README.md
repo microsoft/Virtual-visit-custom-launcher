@@ -1,14 +1,60 @@
-# Project
+# Project Overview
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+An application to provide a streamlined interface for various ways of initiating a virtual visit with a person or group of people.
 
-As the maintainer of this project, please make a few updates:
+## Use Cases
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+We built this project to meet multiple needs around connecting with patients through audio/video calls.
+
+### Streamlined "meet now" for virtual visits
+
+When trying to meet virtually with someone, there are multiple channels of engagement, with potentially multiple screens/interfaces involved in setting up and calling/inviting the participant and additional parties (e.g. interpreter, additional family member). There is a desire to have a "simple, single interface" to make engaging in a call easy, without detailed knowledge of how the communication platform works and the nuances of scheduling these different types of engagement.
+
+The application makes it easy to dial out via Teams call, or invite multiple parties via SMS/email to the virtual visit and join that call.
+
+### Launch from EMR applications
+
+For a healthcare proviers, clinicians, and staff, they want to be able to initiate calls from the context of a patient record or specific encounter in the EMR (desktop, mobile, tablet).
+
+The application receives patient contact information (e.g. phone number, email address) directly from the EMR, reducing effort and potential errors involved with copy/paste and entry.
+
+## Power Platform Application sample app
+
+![Screenshot](./images/power-app-image.png)
+
+### Prerequisites
+
+The following services are leveraged in the sample solution and may be part of your implementation. For specific questions regarding existing licensing, coverage, or to add services, contact your Microsoft account team.
+
+#### Power Platform
+
+- Get access to a [Power Platform](https://docs.microsoft.com/en-us/power-platform/) environment with Dataverse provisioned and Power Apps premium licenses for users
+- Deploy a custom connector to the Power Platform environment when using the Bookings or Advanced Virtual Appointments [Sample connector](https://github.com/microsoft/Virtual-Visit-Sample-Connector)
+
+#### Microsoft Teams
+
+- Microsoft Bookings will need to be configured when Bookings are used for Virtual Appointment scheduling
+- Microsoft [Teams Premium](https://learn.microsoft.com/en-us/microsoftteams/enhanced-teams-experience#advanced-virtual-appointments) will be required when using the Advanced Virtual Appointments functionality
+- Microsoft Teams with [voice solution](https://learn.microsoft.com/en-us/microsoftteams/cloud-voice-landing-page) will need to be configured when using Teams for direct outbound calling
+
+### Exploring the sample app
+
+Deploy the latest ***Virtual Visit Custom Launcher*** solution file ([/soluiton-file-history](./solution-file-history)) to your Dataverse environment, then Publish and run the *Connect Virtually* app.
+
+Explore the configuration of the solution components via the maker portal. Review the Power Apps canvas and Power Automate workflow used in the sample app.
+
+Try launching the *Connect Virtually* app from its URL and include one or both of the following parameters to simulate launch-from EMR:
+
+- To pass a phone number, use the `personPhone` parameter. e.g. `&personPhone=8885551234` 
+- To pass an email address, use the `personEmail` parameter. e.g. `&personEmail=jane@sample.com`
+
+> #### Managed or Unmanaged solutions?
+> 
+> Both Managed and Unmanaged solutions are available in this repository, as well as the raw source code.
+>  - The managed solution offers a one-step uninstallation of all components, but requires more steps to review/edit it in the Power Apps Maker Studio
+>  - The unmanaged solution can be reviewed/edited immediately once imported, but will require components to be individually deleted if you wish to remove them from the environment later
+>  - The source code folder [/src](/src) is intended for advanced makers (e.g. pro-developers) who prefer to build their own solution or inspect the raw detail that makes up the solution.
+ 
 
 ## Contributing
 

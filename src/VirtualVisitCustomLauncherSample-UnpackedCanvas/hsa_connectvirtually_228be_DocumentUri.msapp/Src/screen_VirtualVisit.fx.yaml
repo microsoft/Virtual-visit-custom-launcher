@@ -1,0 +1,351 @@
+screen_VirtualVisit As screen:
+    Fill: =RGBA(232, 232, 232, 1)
+    OnVisible: |-
+        =If(And(CountRows(Search(col_invitees,"sms","channel"))=0,Len(input_phone.Text)=10),Collect(col_invitees,{channel:"sms",value:"1"&input_phone.Text}),"");
+        If(And(CountRows(Search(col_invitees,"email","channel"))=0,Len(input_email_1.Text)>5),Collect(col_invitees,{channel:"email",value:input_email_1.Text}),"")
+
+    con_Screen_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =1136
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =10
+        Width: =640
+        ZIndex: =1
+
+        con_Header_2 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =150
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            ZIndex: =1
+
+            img_logo_2 As image:
+                BorderColor: =RGBA(0, 89, 178, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height-Parent.PaddingTop-Parent.PaddingBottom
+                Image: |-
+                    ="https://github.com/SmartterHealth/branding/blob/master/Primary%20Logo/primary%20-%20full.png?raw=true"
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                ZIndex: =1
+
+        con_Body_1 As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =10
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            ZIndex: =2
+
+            Label2_1 As label:
+                BorderColor: =RGBA(0, 89, 178, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =150
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =21
+                Text: ="With this app you can connect with the patient. Call the phone number from Teams audio call with a single-click, or invite to a virtual visit to easily include additional parties."
+                Width: =Parent.Width
+                ZIndex: =1
+
+            con_Phone_1 As groupContainer.horizontalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =100
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =5
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =2
+
+                Label1_2 As label:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Height: =70
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =560
+                    Size: =21
+                    Text: |-
+                        ="Phone:"
+                    ZIndex: =1
+
+                input_phone_1 As text:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    BorderThickness: =2
+                    Color: =RGBA(0, 0, 0, 1)
+                    Default: =input_phone.Text
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Format: =TextFormat.Number
+                    Height: =70
+                    HintText: ="10-digit SMS-capable phone"
+                    HoverBorderColor: =RGBA(0, 89, 178, 1)
+                    HoverColor: =RGBA(0, 0, 0, 1)
+                    HoverFill: =RGBA(153, 205, 255, 1)
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =300
+                    MaxLength: =10
+                    Size: =21
+                    Width: =560
+                    ZIndex: =2
+
+                input_phone_1_clean As label:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FillPortions: =1
+                    Height: =70
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =560
+                    Size: =21
+                    Text: |
+                        =Substitute(Substitute(Substitute(Substitute(input_phone_1.Text,
+                            "+",""),
+                            ")",""),
+                            "(",""),
+                            "-","")
+                    Visible: =false
+                    Width: =560
+                    X: =40
+                    Y: =1026
+                    ZIndex: =3
+
+                Icon2 As icon.AddUser:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Color: =RGBA(0, 89, 178, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Icon: =Icon.AddUser
+                    OnSelect: |-
+                        =If(
+                            !IsMatch(input_phone_1.Text, "\d{10}"),
+                            Notify("Please include a 10-digit SMS-capable phone number",NotificationType.Error),
+                            Collect(col_invitees,{channel:"sms",value:"1"&input_phone_1.Text});Reset(input_phone_1)
+                        )
+                    PaddingBottom: =5
+                    PaddingLeft: =5
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    ZIndex: =4
+
+            con_Email_1 As groupContainer.horizontalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =100
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =5
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =3
+
+                Label1_3 As label:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Height: =70
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =560
+                    Size: =21
+                    Text: |-
+                        ="Email:"
+                    ZIndex: =1
+
+                input_email_1 As text:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    BorderThickness: =2
+                    Color: =RGBA(0, 0, 0, 1)
+                    Default: =Param("personEmail")
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Height: =70
+                    HintText: ="name@sample.com"
+                    HoverBorderColor: =RGBA(0, 89, 178, 1)
+                    HoverColor: =RGBA(0, 0, 0, 1)
+                    HoverFill: =RGBA(153, 205, 255, 1)
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =300
+                    Size: =21
+                    Width: =Parent.Width
+                    ZIndex: =2
+
+                Icon2_1 As icon.AddUser:
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Color: =RGBA(0, 89, 178, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Icon: =Icon.AddUser
+                    OnSelect: |-
+                        =If(
+                            !IsMatch(input_email_1.Text,"^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"),
+                            Collect(col_invitees,{channel:"email",value:input_email_1.Text});Reset(input_email_1),
+                            Notify("Please use a valid email address",NotificationType.Error)
+                        )
+                    PaddingBottom: =5
+                    PaddingLeft: =5
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    ZIndex: =3
+
+            con_Email_2 As groupContainer.horizontalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Height: =100
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                ZIndex: =4
+
+                "Gallery1 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    BorderColor: =RGBA(0, 89, 178, 1)
+                    Height: =Parent.Height
+                    Items: =col_invitees
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    TemplatePadding: =0
+                    TemplateSize: =Min(70, Self.Height - 60)
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    Title2 As label:
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FontWeight: =FontWeight.Semibold
+                        Height: =Self.Size * 1.8
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =20
+                        Text: |-
+                            =If(ThisItem.channel="sms",
+                                "+1 "&Mid(ThisItem.value,2,3)&"-"&Mid(ThisItem.value,5,3)&"-"&Right(ThisItem.value,4),
+                                ThisItem.value
+                            )
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.TemplateWidth - 160  
+                        X: =95
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =1
+
+                    icoRemoveItem As icon.ChevronRight:
+                        AccessibleLabel: =Self.Tooltip
+                        BorderColor: =RGBA(0, 89, 178, 1)
+                        Color: =RGBA(0, 89, 178, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =60
+                        Icon: =Icon.CancelBadge
+                        OnSelect: =Remove(col_invitees,ThisItem)
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        TabIndex: =0
+                        Tooltip: ="View item details"
+                        Width: =60
+                        X: =Parent.TemplateWidth - Self.Width - 5
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =2
+
+                    Separator2 As rectangle:
+                        BorderColor: =RGBA(0, 89, 178, 1)
+                        Fill: =RGBA(0, 89, 178, 1)
+                        Height: =1
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - 1
+                        ZIndex: =3
+
+                    ico_channel As icon.Phone:
+                        BorderColor: =RGBA(0, 89, 178, 1)
+                        Color: =RGBA(0, 89, 178, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Icon: =If(ThisItem.channel="sms",Icon.Mobile,Icon.Mail)
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =5
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        X: =15
+                        Y: =5
+                        ZIndex: =4
+
+        con_Footer As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: =150
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+            ZIndex: =3
+
+            Button3 As button:
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(0, 51, 102, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =ColorFade(RGBA(0, 51, 102, 1), -20%)
+                LayoutMinHeight: =70
+                LayoutMinWidth: =280
+                OnSelect: |-
+                    =Set(participantsJson,JSON(col_invitees));
+                    Set(varVisitDetails,CreateVirtualVisitAndSendInvite.Run(participantsJson));
+                    Navigate(screen_VirtualVisitConfirmation,ScreenTransition.Cover)
+                Size: =24
+                Text: ="Create and send virtual visit link"
+                Width: =Parent.Width-Parent.PaddingLeft-Parent.PaddingRight
+                ZIndex: =1
+
+    Icon4 As icon.BackArrow:
+        BorderColor: =RGBA(0, 89, 178, 1)
+        Color: =RGBA(0, 89, 178, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =32
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        Width: =32
+        X: =12
+        Y: =12
+        ZIndex: =2
+

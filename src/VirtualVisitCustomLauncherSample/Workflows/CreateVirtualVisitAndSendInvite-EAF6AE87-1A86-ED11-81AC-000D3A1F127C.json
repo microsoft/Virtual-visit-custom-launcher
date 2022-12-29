@@ -1,0 +1,201 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "8cf3a602-ef49-42f1-885e-13c6a16f0ed7"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "InviteListJson_Inputs": {
+                  "type": "any",
+                  "description": "Inputs",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "InviteListJson_Inputs"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Send_Invitations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1a1f9e01-52bc-4796-a64f-ae80772ceb93"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "joinurlapp": "@variables('JoinUrlApp')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joinurlapp": {
+                  "title": "JoinUrlApp",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "InviteListJson": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d4447d70-b711-41f5-a225-9ad4825d515b"
+          },
+          "type": "Compose",
+          "inputs": "@triggerBody()['InviteListJson_Inputs']"
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "InviteListJson": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "661d9d45-e803-4f15-b2d2-c9f1ac364b19"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@outputs('InviteListJson')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "channel": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "channel",
+                  "value"
+                ]
+              }
+            }
+          }
+        },
+        "Create_Virtual_Visit": {
+          "actions": {},
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fc572bb8-6b3a-427e-ad18-b6336d06d2b5"
+          },
+          "type": "Scope"
+        },
+        "Get_the_App-join_URL": {
+          "runAfter": {
+            "Create_Virtual_Visit": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "343b621b-42ba-4f7d-83bd-1b5cb59b17f1"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "JoinUrlApp",
+                "type": "string",
+                "value": "https://teams.microsoft.com"
+              }
+            ]
+          }
+        },
+        "Get_the_Anonymous-join_URL": {
+          "runAfter": {
+            "Get_the_App-join_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dd97de83-1828-4bf1-8aea-f7aaaf68cee0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "JoinUrlParty",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Send_Invitations": {
+          "actions": {
+            "Filter_for_SMS": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1ad12889-1f9c-4228-8098-3aa9ac92e402"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_JSON')",
+                "where": "@equals(item()['channel'], 'sms')"
+              }
+            },
+            "Filter_for_email": {
+              "runAfter": {
+                "Filter_for_SMS": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "06d55605-f68a-4f97-9568-efb3f014471b"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_JSON')",
+                "where": "@equals(item()['channel'], 'sms')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_the_Anonymous-join_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e40f779b-a1d3-42a9-9e07-5b6fac935096"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
